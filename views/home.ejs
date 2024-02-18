@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- style added below -->
+    <link rel="stylesheet" href="css/home.css">
+    <title>
+        Todo Tracker
+    </title>
+</head>
+<!-- body starts here -->
+
+<body>
+    <h1>TODO App</h1>
+    <!-- todo form -->
+    <form id="form" action="/add-todo" method="post">
+        <div id="description">
+            <p>description</p>
+            <input class="description" name="description" type="text" placeholder="What do you need to do?">
+        </div>
+        <div id="cat-date-container">
+            <div class="cat-date-block">
+                <p>category</p>
+                <select class="category" name="category" id="category" aria-placeholder="select a category">
+                    <option value="choose">Choose a Category</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="school">School</option>
+                    <option value="social">Social</option>
+                    <option value="health">Health</option>
+                    <option value="other">Others</option>
+                </select>
+            </div>
+            <div class="cat-date-block">
+                <p>due date</p>
+                <input class="dueDate" name="dueDate" type="date">
+            </div>
+        </div>
+        <!-- add button -->
+        <button type="submit">add task</button>
+    </form>
+    <!-- delete button -->
+    <button id="delete-button">delete task</button>
+    <!-- todo list -->
+    <ul class="list-container">
+        <% for(i of todo_list){%>
+            <li class="list-item">
+                <input class="checkbox" type="checkbox" data-id="<%= i._id %>" name="checkedItem">
+                <div class="info-card">
+                    <h3>
+                        <%= i.description%>
+                    </h3>
+                    <p>
+                        <%= i.dueDate.toString().slice(4, 15) %>
+                    </p>
+                </div>
+                <div class="cat-card <%= i.category%>">
+                    <%= i.category%>
+                </div>
+            </li>
+            <%}%>
+    </ul>
+    <!-- script home.js added below -->
+    <script type="text/JAVASCRIPT" src="/js/home.js"></script>
+</body>
+
+</html>
